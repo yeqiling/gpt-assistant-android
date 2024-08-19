@@ -11,24 +11,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class GlobalDataHolder {
+    public static final String TAG = "GlobalDataHolder";
     private static List<PromptTabData> tabDataList = null;
-    private static boolean asrUseWhisper;
-    private static boolean asrUseGoogle;
-    private static boolean asrUseBaidu;
-    private static String asrAppId;
-    private static String asrApiKey;
-    private static String asrSecretKey;
-    private static boolean asrUseRealTime;
     private static String gptApiHost;
     private static String gptApiKey;
     private static String gptModel;
-    private static List<String> customModels = null;
-    private static boolean checkAccessOnStart;
-    private static boolean defaultEnableTts;
     private static boolean defaultEnableMultiChat;
     private static int selectedTab;
     private static boolean enableInternetAccess;
@@ -37,19 +27,17 @@ public class GlobalDataHolder {
     private static boolean limitVisionSize;
     private static boolean autoSaveHistory;
     private static SharedPreferences sp = null;
+    private static List<ApiProvider> apiProviderList = null;
 
     public static void init(Context context) {
         sp = context.getSharedPreferences("gpt_assistant", Context.MODE_PRIVATE);
         loadTabDataList();
-        if(tabDataList.size() == 0) {
+        if (tabDataList.size() == 0) {
             tabDataList.add(new PromptTabData(context.getString(R.string.text_default_tab_title), context.getString(R.string.text_default_tab_content)));
             saveTabDataList();
         }
-        loadAsrSelection();
-        loadBaiduAsrInfo();
+        loadApisList();
         loadGptApiInfo();
-        loadStartUpSetting();
-        loadTtsSetting();
         loadMultiChatSetting();
         loadSelectedTab();
         loadFunctionSetting();
@@ -59,6 +47,10 @@ public class GlobalDataHolder {
 
     public static List<PromptTabData> getTabDataList() {
         return tabDataList;
+    }
+
+    public static List<ApiProvider> getApisList() {
+        return apiProviderList;
     }
 
     public static void saveTabDataList() {
@@ -91,84 +83,71 @@ public class GlobalDataHolder {
         }
     }
 
-    public static void loadAsrSelection() {
-        asrUseWhisper = sp.getBoolean("asr_use_whisper", false);
-        asrUseBaidu = sp.getBoolean("asr_use_baidu", false);
-        asrUseGoogle = sp.getBoolean("asr_use_google", false);
-    }
-
-    public static void saveAsrSelection(boolean useWhisper, boolean useBaidu, boolean useGoogle) {
-        asrUseWhisper = useWhisper;
-        asrUseBaidu = useBaidu;
-        asrUseGoogle = useGoogle;
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putBoolean("asr_use_whisper", asrUseWhisper);
-        editor.putBoolean("asr_use_baidu", asrUseBaidu);
-        editor.putBoolean("asr_use_google", asrUseGoogle);
-        editor.apply();
-    }
-
-    public static void loadBaiduAsrInfo() {
-        asrAppId = sp.getString("asr_app_id", "");
-        asrApiKey = sp.getString("asr_api_key", "");
-        asrSecretKey = sp.getString("asr_secret_key", "");
-        asrUseRealTime = sp.getBoolean("asr_use_real_time", false);
-    }
-
-    public static void saveBaiduAsrInfo(String appId, String apiKey, String secretKey, boolean useRealTime) {
-        asrApiKey = apiKey;
-        asrAppId = appId;
-        asrSecretKey = secretKey;
-        asrUseRealTime = useRealTime;
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("asr_app_id", asrAppId);
-        editor.putString("asr_api_key", asrApiKey);
-        editor.putString("asr_secret_key", asrSecretKey);
-        editor.putBoolean("asr_use_real_time", asrUseRealTime);
-        editor.apply();
-    }
-
     public static void loadGptApiInfo() {
-        gptApiHost = sp.getString("gpt_api_host", "https://api.openai.com/");
-        gptApiKey = sp.getString("gpt_api_key", "");
-        gptModel = sp.getString("gpt_model", "gpt-3.5-turbo");
-        customModels = new ArrayList<>(Arrays.asList(sp.getString("custom_models", "").split(";")));
-        customModels.removeIf(String::isEmpty);
+        ApiProvider provider = getFirstCheckedProvider(apiProviderList);
+        if (provider == null) {
+            gptApiHost = "";
+            gptApiKey = "";
+            gptModel = "";
+        } else {
+            gptApiHost = provider.getHost();
+            gptApiKey = provider.getKey();
+            gptModel = provider.getModel();
+        }
     }
 
-    public static void saveGptApiInfo(String host, String key, String model, List<String> customModelList) {
+    public static ApiProvider getFirstCheckedProvider(List<ApiProvider> apiProviderList) {
+        if (apiProviderList == null || apiProviderList.isEmpty()) {
+            return null;
+        }
+
+        return apiProviderList.stream()
+                .filter(ApiProvider::getChecked)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static void saveGptApiInfo(String host, String key, String model) {
         gptApiHost = host;
         gptApiKey = key;
         gptModel = model;
-        customModels = customModelList;
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("gpt_api_host", gptApiHost);
         editor.putString("gpt_api_key", gptApiKey);
         editor.putString("gpt_model", gptModel);
-        editor.putString("custom_models", String.join(";", customModels));
         editor.apply();
     }
 
-    public static void loadStartUpSetting() {
-        checkAccessOnStart = sp.getBoolean("check_access_on_start", true);
-    }
-
-    public static void saveStartUpSetting(boolean checkAccess) {
-        checkAccessOnStart = checkAccess;
+    public static void saveApisList() {
         SharedPreferences.Editor editor = sp.edit();
-        editor.putBoolean("check_access_on_start", checkAccessOnStart);
-        editor.apply();
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(apiProviderList);
+            String base64 = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+            editor.putString("apis", base64);
+            editor.apply();
+            Log.d("saveTabDataList", "saved");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void loadTtsSetting() {
-        defaultEnableTts = sp.getBoolean("tts_enable", true);
-    }
-
-    public static void saveTtsSetting(boolean enable) {
-        defaultEnableTts = enable;
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putBoolean("tts_enable", defaultEnableTts);
-        editor.apply();
+    public static void loadApisList() {
+        String base64 = sp.getString("apis", "");
+        if (base64.equals("")) {
+            apiProviderList = new ArrayList<>();
+            return;
+        }
+        byte[] bytes = Base64.decode(base64, Base64.DEFAULT);
+        try {
+            ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
+            apiProviderList = (List<ApiProvider>) (new ObjectInputStream(bais).readObject());
+            Log.i(TAG, apiProviderList.toString());
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+            apiProviderList = new ArrayList<>();
+        }
     }
 
     public static void loadMultiChatSetting() {
@@ -232,43 +211,55 @@ public class GlobalDataHolder {
         editor.apply();
     }
 
-    public static boolean getAsrUseWhisper() { return asrUseWhisper; }
+    public static String getGptApiHost() {
+        return gptApiHost;
+    }
 
-    public static boolean getAsrUseGoogle() { return asrUseGoogle; }
+    public static void setGptApiHost(String gptApiHost) {
+        GlobalDataHolder.gptApiHost = gptApiHost;
+    }
 
-    public static boolean getAsrUseBaidu() { return asrUseBaidu; }
+    public static void setGptApiKey(String gptApiKey) {
+        GlobalDataHolder.gptApiKey = gptApiKey;
+    }
 
-    public static String getAsrAppId() { return asrAppId; }
+    public static String getGptApiKey() {
+        return gptApiKey;
+    }
 
-    public static String getAsrApiKey() { return asrApiKey; }
+    public static String getGptModel() {
+        return gptModel;
+    }
 
-    public static String getAsrSecretKey() { return asrSecretKey; }
+    public static void setGptModel(String gptModel) {
+        GlobalDataHolder.gptModel = gptModel;
+    }
 
-    public static boolean getAsrUseRealTime() { return asrUseRealTime; }
+    public static boolean getDefaultEnableMultiChat() {
+        return defaultEnableMultiChat;
+    }
 
-    public static String getGptApiHost() { return gptApiHost; }
+    public static int getSelectedTab() {
+        return selectedTab;
+    }
 
-    public static String getGptApiKey() { return gptApiKey; }
+    public static boolean getEnableInternetAccess() {
+        return enableInternetAccess;
+    }
 
-    public static String getGptModel() { return gptModel; }
+    public static int getWebMaxCharCount() {
+        return webMaxCharCount;
+    }
 
-    public static List<String> getCustomModels() { return customModels; }
+    public static boolean getOnlyLatestWebResult() {
+        return onlyLatestWebResult;
+    }
 
-    public static boolean getCheckAccessOnStart() { return checkAccessOnStart; }
+    public static boolean getLimitVisionSize() {
+        return limitVisionSize;
+    }
 
-    public static boolean getDefaultEnableTts() { return defaultEnableTts; }
-
-    public static boolean getDefaultEnableMultiChat() { return defaultEnableMultiChat; }
-
-    public static int getSelectedTab() { return selectedTab; }
-
-    public static boolean getEnableInternetAccess() { return enableInternetAccess; }
-
-    public static int getWebMaxCharCount() { return webMaxCharCount; }
-
-    public static boolean getOnlyLatestWebResult() { return onlyLatestWebResult; }
-
-    public static boolean getLimitVisionSize() { return limitVisionSize; }
-
-    public static boolean getAutoSaveHistory() { return autoSaveHistory; }
+    public static boolean getAutoSaveHistory() {
+        return autoSaveHistory;
+    }
 }

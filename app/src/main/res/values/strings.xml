@@ -2,139 +2,288 @@
     <string name="app_name" translatable="false">GPTAssistant</string>
     <string name="accessibility_service_label" translatable="false">GPTAssistant</string>
     <string-array name="models">
+        <item>gpt-3.5</item>
+        <item>gpt-3.5-text</item>
         <item>gpt-3.5-turbo</item>
+        <item>gpt-3.5-turbo-0125</item>
+        <item>gpt-3.5-turbo-0301</item>
+        <item>gpt-3.5-turbo-0613</item>
+        <item>gpt-3.5-turbo-1106</item>
+        <item>gpt-3.5-turbo-16k</item>
+        <item>gpt-3.5-turbo-16k-0301</item>
+        <item>gpt-3.5-turbo-16k-0613</item>
+        <item>gpt-3.5-turbo-instruct</item>
         <item>gpt-4</item>
+        <item>gpt-4-0125-preview</item>
+        <item>gpt-4-0314</item>
+        <item>gpt-4-0613</item>
+        <item>gpt-4-1106-preview</item>
+        <item>gpt-4-128k</item>
+        <item>gpt-4-128k-latest</item>
+        <item>gpt-4-32k</item>
+        <item>gpt-4-32k-0314</item>
+        <item>gpt-4-32k-0613</item>
+        <item>gpt-4-all</item>
         <item>gpt-4-turbo</item>
+        <item>gpt-4-turbo-2024-04-09</item>
+        <item>gpt-4-turbo-preview</item>
+        <item>gpt-4-vision</item>
+        <item>gpt-4-vision-preview</item>
         <item>gpt-4o</item>
+        <item>gpt-4o-2024-05-13</item>
+        <item>gpt-4o-mini</item>
+        <item>gpt-4o-mini-2024-07-18</item>
+        <item>gpt-4o-v</item>
+        <item>gpt4</item>
+        <item>abacus-giraffe</item>
+        <item>abacus-giraffe-large</item>
+        <item>abacus-smaug3</item>
+        <item>babbage-002</item>
+        <item>bing</item>
+        <item>bing-balanced</item>
+        <item>bing-precise</item>
+        <item>chat_dalle</item>
+        <item>chatglm_lite</item>
+        <item>chatglm_pro</item>
+        <item>chatglm_std</item>
+        <item>chatglm_turbo</item>
+        <item>ChatPro</item>
+        <item>ChatStd</item>
+        <item>claude-1-100k</item>
+        <item>claude-1.3-100k</item>
+        <item>claude-2</item>
+        <item>claude-2.0</item>
+        <item>claude-2.1</item>
+        <item>claude-3-5-sonnet-20240620</item>
+        <item>claude-3-haiku</item>
+        <item>claude-3-haiku-20240307</item>
+        <item>claude-3-opus</item>
+        <item>claude-3-opus-20240229</item>
+        <item>claude-3-sonnet</item>
+        <item>claude-3-sonnet-20240229</item>
+        <item>claude-3.5-sonnet</item>
+        <item>claude-instant-1.2</item>
+        <item>code-llama-34b</item>
+        <item>command</item>
+        <item>command-light</item>
+        <item>command-light-nightly</item>
+        <item>command-nightly</item>
+        <item>command-r</item>
+        <item>command-r-plus</item>
+        <item>dall-e-3</item>
+        <item>dalle-3</item>
+        <item>davinci-002</item>
+        <item>deepseek-chat</item>
+        <item>deepseek-coder</item>
+        <item>Embedding-V1</item>
+        <item>ERNIE-3.5-8K</item>
+        <item>ERNIE-4.0-8K</item>
+        <item>ERNIE-Character-8K</item>
+        <item>ERNIE-Functions-8K</item>
+        <item>ERNIE-Lite-8K</item>
+        <item>ERNIE-Speed-128K</item>
+        <item>ERNIE-Speed-8K</item>
+        <item>ERNIE-Tiny-8K</item>
+        <item>gemini-1.0-pro</item>
+        <item>gemini-1.0-pro-001</item>
+        <item>gemini-1.0-pro-latest</item>
+        <item>gemini-1.0-pro-vision-001</item>
+        <item>gemini-1.0-pro-vision-latest</item>
+        <item>gemini-1.5-flash-latest</item>
+        <item>gemini-1.5-pro</item>
+        <item>gemini-1.5-pro-latest</item>
+        <item>gemini-pro</item>
+        <item>gemini-pro-vision</item>
+        <item>gemini-ultra</item>
+        <item>glm-3-turbo</item>
+        <item>glm-4</item>
+        <item>glm-4v</item>
+        <item>google-palm</item>
+        <item>groq-llama3-large-chat</item>
+        <item>hunyuan</item>
+        <item>images</item>
+        <item>llama-2-13b</item>
+        <item>llama-2-70b</item>
+        <item>llama-3-70b-instruct</item>
+        <item>llama-3-8b-instruct</item>
+        <item>llama-3-sonar-large-32k-chat</item>
+        <item>llama-3-sonar-large-32k-online</item>
+        <item>llama-3-sonar-small-32k-chat</item>
+        <item>llama-3-sonar-small-32k-online</item>
+        <item>llama2-70b-4096</item>
+        <item>llama2-chat</item>
+        <item>llama3-7b</item>
+        <item>llama3-large-chat</item>
+        <item>Meta-Llama-3.1-405B-Instruct</item>
+        <item>Meta-Llama-3.1-70B-Instruct</item>
+        <item>Meta-Llama-3.1-8B-Instruct</item>
+        <item>mistral-medium</item>
+        <item>Mixtral-8x22B-Instruct-v0.1</item>
+        <item>mixtral-8x7b-32768</item>
+        <item>mixtral-8x7b-instruct</item>
+        <item>Mixtral-8x7B-Instruct-v0.1</item>
+        <item>mixtral-chat</item>
+        <item>net-gpt-4</item>
+        <item>palm</item>
+        <item>PaLM-2</item>
+        <item>palm-text</item>
+        <item>playground-v2.5</item>
+        <item>qwen-max</item>
+        <item>qwen-max-longcontext</item>
+        <item>qwen-plus</item>
+        <item>qwen-turbo</item>
+        <item>qwen/qwen-2-72b-instruct</item>
+        <item>qwen/qwen-2-7b-instruct</item>
+        <item>SparkDesk</item>
+        <item>SparkDesk-v1.1</item>
+        <item>SparkDesk-v2.1</item>
+        <item>SparkDesk-v3.1</item>
+        <item>SparkDesk-v3.5</item>
+        <item>SparkDesk-v4.0</item>
+        <item>stable-diffusion</item>
+        <item>stable-diffusion-3-2b</item>
+        <item>text-ada-001</item>
+        <item>text-babbage-001</item>
+        <item>text-curie-001</item>
+        <item>text-davinci-002</item>
+        <item>text-davinci-003</item>
+        <item>text-davinci-edit-001</item>
+        <item>text-embedding-3-large</item>
+        <item>text-embedding-3-small</item>
+        <item>text-embedding-ada-002</item>
+        <item>text-embedding-v1</item>
+        <item>text-moderation-latest</item>
+        <item>text-moderation-stable</item>
+        <item>tts-1</item>
+        <item>tts-1-1106</item>
+        <item>tts-1-hd</item>
+        <item>tts-1-hd-1106</item>
+        <item>whisper-1</item>
     </string-array>
     <!-- HMS语音识别API_KEY 已限制包名和签名 -->
     <string name="hms_api_key" translatable="false">DAEDADuGjMLeSU+tLR7t9Z3XEtc5TH45ztgfk9MyzlFy5ogpHIYiX1wL0fWyL9tS/Y7MzU9QK4vtZUvoo97OT4YcpG9BmxtgtQpWpw==</string>
-    <!--  帮助说明  -->
-    <string name="help_msg">
-        Brief instructions below, see project homepage for more.\n\n
-        GPTAssistant, based on ChatGPT, lets you set question templates for quick querying via desktop icon or notification bar.\n\n
-        Fill in the OpenAI API host and API_Key in settings. Use official parameters or a relay key.\n\n
-        For voice assistant, enable accessibility service and allow background running. Long-press volume down to wake the app, and speak to the mic while holding. After release, press again within 3 seconds to send the query.\n\n
-        The default HMS voice service can be switched to Baidu / Google / Whisper service, see project homepage for instruction.\n\n
-        Enabling networking allows fetching web content for GPT to enhance answer accuracy. Note: This can increase token usage significantly, use GPT-4 sparingly.\n\n
-        Note: If there\'s vibration without pop-up after long-pressing volume, please permit background pop-ups in system settings.
-    </string>
+
     <!--  软件界面字符串  -->
-    <string name="conf_tab_list_title">Template Settings</string>
-    <string name="conf_tab_list_subtitle">| Drag to sort, swipe left to delete</string>
-    <string name="conf_openai_title">OpenAI Settings</string>
+    <string name="conf_tab_list_title">模板设置</string>
+    <string name="conf_tab_list_subtitle">| 长按拖动排序，左滑删除</string>
+    <string name="conf_openai_title">OpenAI 设置</string>
     <string name="conf_opanai_key_item">Key</string>
-    <string name="conf_openai_host_item">URL</string>
-    <string name="conf_model_select_item">Choose Model</string>
-    <string name="conf_custom_model_item">Custom Models</string>
-    <string name="conf_custom_model_tip">Separate models with \';\'</string>
-    <string name="conf_asr_title">Speech Recognition Settings</string>
-    <string name="conf_asr_subtitle">| Disabling all will use built-in HMS service</string>
-    <string name="conf_use_baidu_asr_item">Use Baidu Service</string>
+    <string name="conf_openai_host_item">网址</string>
+    <string name="conf_model_select_item">选用模型</string>
+    <string name="conf_custom_model_item">自定义模型</string>
+    <string name="conf_custom_model_tip">用分号隔开多个模型</string>
+    <string name="conf_asr_title">语音识别设置</string>
+    <string name="conf_asr_subtitle">| 关闭下述接口则使用内置华为接口</string>
+    <string name="conf_use_baidu_asr_item">使用百度接口</string>
     <string name="conf_baidu_appid_item">AppID</string>
     <string name="conf_baidu_apikey_item">ApiKey</string>
-    <string name="conf_baidu_secret_item">SecretKey</string>
-    <string name="conf_baidu_realtime_item">Enable Long Speech</string>
-    <string name="conf_use_whisper_asr_item">Use Whisper Service</string>
-    <string name="conf_use_google_asr_item">Use Google Service</string>
-    <string name="conf_network_title">Networking Settings</string>
-    <string name="conf_enable_network_item">Enable Web Access</string>
-    <string name="conf_enable_network_tip">Significantly increases token usage</string>
-    <string name="conf_web_max_char_item">Max Webpage Length</string>
-    <string name="conf_web_max_char_tip">Discard excess to reduce tokens</string>
-    <string name="conf_only_latest_web_item">Send Latest Data Only</string>
-    <string name="conf_only_latest_web_tip">Discard old web data to save tokens</string>
-    <string name="conf_others_title">Other Options</string>
-    <string name="conf_set_access_item">Set Accessibility Mode</string>
-    <string name="conf_startup_check_access_item">Check Accessibility on Startup</string>
-    <string name="conf_set_tts_item">Open TTS Settings</string>
-    <string name="conf_tts_enable_item">Enable TTS by Default</string>
-    <string name="conf_tts_enable_tip">Set voice feedback on app start</string>
-    <string name="conf_def_enable_chat_item">Enable Chat by Default</string>
-    <string name="conf_def_enable_chat_tip">Set ongoing chat on app start</string>
-    <string name="conf_remember_tab_item">Remember Selected Tab</string>
-    <string name="conf_remember_tab_tip">Auto-select last used template</string>
-    <string name="conf_auto_save_history_item">Auto-Save Conversations</string>
-    <string name="conf_auto_save_history_tip">Save current discussion on new chat</string>
-    <string name="conf_limit_vision_size_item">Image Size Limit</string>
-    <string name="conf_limit_vision_size_tip">On:2048x512 Off:2048x2048</string>
-    <string name="conf_help_item">Help</string>
-    <string name="conf_check_update_item">Check for Updates</string>
-    <string name="conf_check_update_tip_empty">Current version: 0.0.0</string>
-    <string name="conf_homepage_item">Project Homepage</string>
-    <string name="conf_homepage_tip">2024 @skythinker - Stars welcomed~</string>
-    <string name="default_greeting">Hello! What can I assist you with?</string>
-    <string name="conf_activity_title">Settings</string>
-    <string name="history_activity_title">History Records</string>
-    <string name="history_search_hint">Search Conversation Titles</string>
-    <string name="dialog_clear_history">Confirm clear all history?\n(Swipe left to delete individual)</string>
-    <string name="tab_detail_activity_title">Edit Template</string>
-    <string name="tab_detail_cancel_text">Cancel</string>
-    <string name="tab_detail_confirm_text">Confirm</string>
-    <string name="tab_detail_title_hint">Enter title here</string>
-    <string name="tab_detail_content_hint">Enter template content here (you can get examples and help using upper right corner button)</string>
-    <string name="confirm_dialog_default_title">Notice</string>
-    <string name="confirm_dialog_default_cancel_text">Cancel</string>
-    <string name="confirm_dialog_default_ok_text">Confirm</string>
-    <string name="img_dialog_form_camera">Take Photo</string>
-    <string name="img_dialog_from_album">Pick from Gallery</string>
-    <string name="img_dialog_cancel">Cancel</string>
-    <string name="img_preview_title">Image Preview</string>
-    <string name="img_preview_cancel">Back</string>
-    <string name="img_preview_delete">Remove</string>
-    <string name="img_preview_reselect">Reselect</string>
-    <string name="toast_use_vision_model">Choose a vision model to send images</string>
-    <string name="text_ref_web_prefix">"Ref web: "</string>
-    <string name="text_gpt_error_prefix">"Failed to get: "</string>
-    <string name="text_visiting_web_prefix">"Visiting: "</string>
-    <string name="text_cancel_web">Webpage visit canceled.</string>
-    <string name="text_asr_error_prefix">"Voice recognition error: "</string>
-    <string name="text_input_hint">Long-press to speak or clear</string>
-    <string name="text_listening_hint">Listening...</string>
-    <string name="text_access_notice">Please enable Accessibility Services</string>
-    <string name="toast_access_error">Accessibility not enabled, volume key control unavailable</string>
-    <string name="toast_clipboard">Copied to clipboard</string>
-    <string name="toast_code_clipboard">Code block copied to clipboard</string>
-    <string name="text_waiting_reply">Waiting for reply...</string>
-    <string name="toast_enable_network">Reminder: Web access will increase token usage, use GPT-4 wisely!</string>
-    <string name="dialog_help_title">Help</string>
-    <string name="dialog_help_cancel">Back</string>
-    <string name="format_version_latest">Current version: %s · Up-to-date</string>
-    <string name="format_version_available">Update available: %s -> %s</string>
-    <string name="format_version_normal">Current version: %s</string>
-    <string name="homepage_url">https://github.com/Skythinker616/gpt-assistant-android</string>
-    <string name="release_url">https://github.com/Skythinker616/gpt-assistant-android/releases</string>
-    <string name="check_update_url">https://api.github.com/repos/Skythinker616/gpt-assistant-android/releases/latest</string>
+    <string name="conf_baidu_secret_item">Secret</string>
+    <string name="conf_baidu_realtime_item">启用长语音</string>
+    <string name="conf_use_whisper_asr_item">使用Whisper接口</string>
+    <string name="conf_use_google_asr_item">使用谷歌接口</string>
+    <string name="conf_network_title">联网设置</string>
+    <string name="conf_enable_network_item">启用网络访问</string>
+    <string name="conf_enable_network_tip">开启会大幅增加Token用量</string>
+    <string name="conf_web_max_char_item">单网页最大字符数</string>
+    <string name="conf_web_max_char_tip">丢弃超出的字符以缩减Token</string>
+    <string name="conf_only_latest_web_item">仅发送最新数据</string>
+    <string name="conf_only_latest_web_tip">丢弃上方对话的网络数据以缩减Token</string>
+    <string name="conf_others_title">其他选项</string>
+    <string name="conf_set_access_item">设置无障碍模式</string>
+    <string name="conf_startup_check_access_item">启动时检查无障碍</string>
+    <string name="conf_set_tts_item">打开系统语音设置</string>
+    <string name="conf_tts_enable_item">默认启用语音</string>
+    <string name="conf_tts_enable_tip">设置应用启动时是否开启语音播报</string>
+    <string name="conf_def_enable_chat_item">默认启用对话</string>
+    <string name="conf_def_enable_chat_tip">设置应用启动时是否开启连续对话</string>
+    <string name="conf_remember_tab_item">记住选用的模板</string>
+    <string name="conf_remember_tab_tip">应用启动时自动选中上次使用的模板</string>
+    <string name="conf_auto_save_history_item">自动保存对话</string>
+    <string name="conf_auto_save_history_tip">新建对话时保存当前对话到历史记录</string>
+    <string name="conf_limit_vision_size_item">发送图片大小限制</string>
+    <string name="conf_limit_vision_size_tip">开:2048x512 关:2048x2048</string>
+    <string name="conf_help_item">查看帮助</string>
+    <string name="conf_check_update_item">查看更新</string>
+    <string name="conf_check_update_tip_empty">当前版本：0.0.0</string>
+    <string name="conf_homepage_item">项目主页</string>
+    <string name="conf_homepage_tip">2024 @skythinker - 欢迎点个Star哦~</string>
+    <string name="default_greeting">您好！请问我能为您提供什么帮助？</string>
+    <string name="conf_activity_title">设置</string>
+    <string name="history_activity_title">历史记录</string>
+    <string name="history_search_hint">搜索对话标题</string>
+    <string name="dialog_clear_history">确定要清空所有历史记录吗？\n（左滑可删除单条记录）</string>
+    <string name="tab_detail_activity_title">模板设置</string>
+    <string name="tab_detail_cancel_text">取消</string>
+    <string name="tab_detail_confirm_text">确定</string>
+    <string name="tab_detail_title_hint">在这里输入模板标题</string>
+    <string name="tab_detail_content_hint">在这里输入模板内容（右上角可以获取在线模板和编写说明哦）</string>
+    <string name="confirm_dialog_default_title">提示</string>
+    <string name="confirm_dialog_default_cancel_text">取消</string>
+    <string name="confirm_dialog_default_ok_text">确定</string>
+    <string name="img_dialog_form_camera">使用相机拍照</string>
+    <string name="img_dialog_from_album">从相册选择</string>
+    <string name="img_dialog_cancel">取消</string>
+    <string name="img_preview_title">图片预览</string>
+    <string name="img_preview_cancel">返回</string>
+    <string name="img_preview_delete">移除</string>
+    <string name="img_preview_reselect">重选</string>
+    <string name="toast_use_vision_model">请选择支持vision的模型以发送图片</string>
+    <string name="text_ref_web_prefix">"参考网页: "</string>
+    <string name="text_gpt_error_prefix">"获取失败: "</string>
+    <string name="text_visiting_web_prefix">"正在访问: "</string>
+    <string name="text_cancel_web">已取消访问网页。</string>
+    <string name="text_asr_error_prefix">"语音识别出错: "</string>
+    <string name="text_input_hint">长按清除文本</string>
+    <string name="text_listening_hint">正在聆听...</string>
+    <string name="text_access_notice">请前往开启无障碍服务</string>
+    <string name="toast_access_error">无障碍服务未开启，无法使用音量键控制</string>
+    <string name="toast_clipboard">已复制到剪贴板</string>
+    <string name="toast_code_clipboard">代码块已复制到剪贴板</string>
+    <string name="text_waiting_reply">正在等待回复...</string>
+    <string name="toast_enable_network">提醒：访问网络时会大幅增加token用量，GPT4请谨慎使用！</string>
+    <string name="dialog_help_title">帮助</string>
+    <string name="dialog_help_cancel">返回</string>
+    <string name="format_version_latest">当前版本：%s · 已是最新版本</string>
+    <string name="format_version_available">有可用更新：%s -> %s</string>
+    <string name="format_version_normal">当前版本：%s</string>
+    <string name="homepage_url">https://gitee.com/skythinker/gpt-assistant-android</string>
+    <string name="release_url">https://gitee.com/skythinker/gpt-assistant-android/releases</string>
+    <string name="check_update_url">https://gitee.com/api/v5/repos/skythinker/gpt-assistant-android/releases/latest</string>
     <string name="new_discussion_url">https://github.com/Skythinker616/gpt-assistant-android/discussions/new?category=templates</string>
     <string name="discussions_url">https://github.com/Skythinker616/gpt-assistant-android/discussions/categories/templates</string>
-    <string name="shared_templates_url">https://raw.githubusercontent.com/Skythinker616/gpt-assistant-android/master/static_res/shared_templates.json</string>
-    <string name="template_help_url">https://github.com/Skythinker616/gpt-assistant-android/blob/master/template_help_en.md</string>
-    <string name="text_default_tab_title">Q&amp;A</string>
-    <string name="text_default_tab_content">"Please answer: "</string>
-    <string name="text_gpt_cancel">Request canceled</string>
-    <string name="text_gpt_timeout">Request timeout</string>
-    <string name="text_gpt_unknown_error">Unknown error occurred</string>
-    <string name="online_temp_activity_title">Online Templates</string>
-    <string name="text_online_temp_notice">| Touch for details, swipe right to download</string>
-    <string name="text_online_temp_loading">Loading...</string>
-    <string name="text_online_temp_error">Network error.</string>
-    <string name="dialog_download_google">Google app is needed. Go to download? (Please grant it audio recording permission)</string>
-    <string name="text_google_asr_unavailable">Google voice service unavailable</string>
-    <string name="dialog_asr_select_help">Mainland China: HMS or Baidu service is better\n\nOther Area: Google or Whisper service may be better</string>
-    <string name="dialog_asr_select_help_title">Select Help</string>
-    <string name="text_whisper_param_error">Please set openai host and key first</string>
-    <string name="text_google_asr_typing_error">Please enable Google Voice Input</string>
-    <string name="text_google_asr_permission_error">Please grant audio recording permission to Google</string>
-    <string name="text_hms_asr_failed_error">\nPossibly due to the author turning off the free HMS speech service or updating the parameters in a new version, if this error continues to occur, please try to update the version or use other voice interfaces</string>
-    <string name="text_copy_code_notice">Click to copy</string>
-    <string name="text_hms_asr_unsupported">x86 is not supported by HMS, please use other speech recognition interface</string>
-    <string name="toast_multi_chat_on">Multi-chat Mode</string>
-    <string name="toast_multi_chat_off">Single-chat Mode</string>
-    <string name="toast_tts_on">Voice Output On</string>
-    <string name="toast_tts_off">Voice Output Off</string>
-    <string name="toast_multi_voice_on">Continuous Voice Input On</string>
-    <string name="toast_multi_voice_off">Continuous Voice Input Off</string>
-    <string name="toast_voice_chat_tts_off">Please turn on voice output first</string>
-    <string name="dialog_custom_model_help_title">Custom Model Help</string>
-    <string name="dialog_custom_model_help">Custom model names entered here will be appended to drop-down list. Use \';\' to separate different models and use \'*\' to indicate a vision model. \n\nExample: gpt-4o*;gpt-4-0613</string>
+    <string name="shared_templates_url">https://gitee.com/skythinker/gpt-assistant-android/raw/master/static_res/shared_templates.json</string>
+    <string name="template_help_url">https://gitee.com/skythinker/gpt-assistant-android/blob/master/template_help.md</string>
+    <string name="text_default_tab_title">问答</string>
+    <string name="text_default_tab_content">请回答这个问题：</string>
+    <string name="text_gpt_cancel">请求已取消</string>
+    <string name="text_gpt_timeout">请求超时</string>
+    <string name="text_gpt_unknown_error">未知错误</string>
+    <string name="online_temp_activity_title">在线模板</string>
+    <string name="text_online_temp_notice">| 触摸查看详情，右滑获取到本地</string>
+    <string name="text_online_temp_loading">正在加载...</string>
+    <string name="text_online_temp_error">网络错误</string>
+    <string name="dialog_download_google">未安装Google搜索，是否前往下载？（请确保允许其录音权限）</string>
+    <string name="text_google_asr_unavailable">Google 语音识别服务不可用</string>
+    <string name="dialog_asr_select_help">中国大陆：推荐使用华为（免费）或百度（付费）接口\n\n海外使用：可以使用谷歌（免费）或Whisper（付费）接口</string>
+    <string name="dialog_asr_select_help_title">语音识别选用说明</string>
+    <string name="text_whisper_param_error">请先配置OpenAI接口参数</string>
+    <string name="text_google_asr_typing_error">请设置Google为语音输入引擎</string>
+    <string name="text_google_asr_permission_error">请在系统设置中允许Google的录音权限</string>
+    <string name="text_hms_asr_failed_error">\n可能由于作者关闭了免费HMS语音服务，或在新版本中更新了参数，若该错误持续发生，请尝试更新版本或使用其他语音识别接口</string>
+    <string name="text_copy_code_notice">点击以复制</string>
+    <string name="text_hms_asr_unsupported">华为语音识别接口不支持x86架构，请选用其他识别接口</string>
+    <string name="toast_multi_chat_on">多轮对话模式</string>
+    <string name="toast_multi_chat_off">单次对话模式</string>
+    <string name="toast_tts_on">语音播报已开启</string>
+    <string name="toast_tts_off">语音播报已关闭</string>
+    <string name="toast_multi_voice_on">进入连续语音对话</string>
+    <string name="toast_multi_voice_off">连续语音对话已退出</string>
+    <string name="toast_voice_chat_tts_off">请先打开语音播报开关</string>
+    <string name="dialog_custom_model_help_title">自定义模型说明</string>
+    <string name="dialog_custom_model_help">可输入多个自定义模型名称，自定义模型也会显示在下拉列表中\n\n多个模型通过英文分号分隔，可在模型结尾添加星号表示支持识图功能\n\n示例：gpt-4o*;gpt-4-0613</string>
+    <string name="go_setting_apis">去设置</string>
+    <string name="noting_select">暂无选中</string>
+    <string name="now_select_api_desc">已选中:\n%s\n%s</string>
+    <string name="model_list_title">模型列表</string>
+    <string name="model_params_empty">模型参数为空</string>
 </resources>
