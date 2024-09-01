@@ -159,6 +159,11 @@ public class TabConfActivity extends Activity {
             GlobalDataHolder.saveFunctionSetting(GlobalDataHolder.getEnableInternetAccess(), GlobalDataHolder.getWebMaxCharCount(), checked);
         });
 
+        ((Switch) findViewById(R.id.sw_send_hide_input_conf)).setChecked(GlobalDataHolder.getAutoHideInput());
+        ((Switch) findViewById(R.id.sw_send_hide_input_conf)).setOnCheckedChangeListener((compoundButton, checked) -> {
+            GlobalDataHolder.saveAutoHideInputSetting(checked);
+        });
+
         (findViewById(R.id.bt_back_conf)).setOnClickListener(view -> {
             finish();
         });

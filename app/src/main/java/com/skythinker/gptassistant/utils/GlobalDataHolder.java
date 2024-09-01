@@ -30,6 +30,8 @@ public class GlobalDataHolder {
     private static boolean onlyLatestWebResult;
     private static boolean limitVisionSize;
     private static boolean autoSaveHistory;
+
+    private static boolean autoHideInput;
     private static SharedPreferences sp = null;
     private static List<ApiProvider> apiProviderList = null;
 
@@ -47,6 +49,7 @@ public class GlobalDataHolder {
         loadFunctionSetting();
         loadVisionSetting();
         loadHistorySetting();
+        loadAutoHideInputSetting();
     }
 
     public static List<PromptTabData> getTabDataList() {
@@ -209,6 +212,17 @@ public class GlobalDataHolder {
         autoSaveHistory = sp.getBoolean("auto_save_history", true);
     }
 
+    public static void loadAutoHideInputSetting() {
+        autoHideInput = sp.getBoolean("auto_hide_input", true);
+    }
+
+    public static void saveAutoHideInputSetting(boolean hide) {
+        autoHideInput = hide;
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean("auto_hide_input", autoHideInput);
+        editor.apply();
+    }
+
     public static void saveHistorySetting(boolean autoSave) {
         autoSaveHistory = autoSave;
         SharedPreferences.Editor editor = sp.edit();
@@ -266,5 +280,9 @@ public class GlobalDataHolder {
 
     public static boolean getAutoSaveHistory() {
         return autoSaveHistory;
+    }
+
+    public static boolean getAutoHideInput() {
+        return autoHideInput;
     }
 }

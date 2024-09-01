@@ -328,6 +328,10 @@ public class MainActivity extends Activity {
             } else {
                 sendQuestion(null);
                 etUserInput.setText("");
+                if (GlobalDataHolder.getAutoHideInput()) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(etUserInput.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
             }
         });
 

@@ -1,6 +1,9 @@
 package com.skythinker.gptassistant.ui.apiprovider;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -23,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.skythinker.gptassistant.utils.GlobalDataHolder;
 import com.skythinker.gptassistant.R;
+import com.skythinker.gptassistant.utils.GlobalUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,6 +62,8 @@ public class ApiProviderListActivity extends Activity {
         EditText hostView = ((EditText) findViewById(R.id.et_openai_host_conf));
         EditText keyView = ((EditText) findViewById(R.id.et_openai_key_conf));
 
+        EditText etImportView = ((EditText) findViewById(R.id.et_import_pair));
+
         findViewById(R.id.cv_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,12 +86,45 @@ public class ApiProviderListActivity extends Activity {
                     GlobalDataHolder.saveApisList();
                     adapter.setNewDatas(GlobalDataHolder.getApisList());
                     adapter.notifyDataSetChanged();
+                    hostView.setText("");
+                    keyView.setText("");
                 } else {
                     Toast.makeText(ApiProviderListActivity.this, getString(R.string.model_params_empty), Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
+
+        findViewById(R.id.cv_import).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String importPairs = etImportView.getText().toString().trim();
+                String[] strings = importPairs.split(";");
+                String host = strings[0];
+                String key = strings[1];
+                String model = strings[2];
+                if (!host.isEmpty()) { // 自动补全URL
+                    if (!host.startsWith("http://") && !host.startsWith("https://")) {
+                        host = "https://" + host;
+                    }
+                    if (!host.endsWith("/")) {
+                        host += "/";
+                    }
+                }
+                if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(key) && !TextUtils.isEmpty(model)) {
+                    ApiProvider provider = new ApiProvider(host, key, model, false);
+                    GlobalDataHolder.getApisList().add(provider);
+                    GlobalDataHolder.saveApisList();
+                    adapter.setNewDatas(GlobalDataHolder.getApisList());
+                    adapter.notifyDataSetChanged();
+                    etImportView.setText("");
+                } else {
+                    Toast.makeText(ApiProviderListActivity.this, getString(R.string.model_params_empty), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
 
         List<String> models = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.models))); // 内置模型列表
         ArrayAdapter<String> modelsAdapter = new ArrayAdapter<String>(this, R.layout.model_spinner_item, models) { // 设置Spinner样式和列表数据
@@ -144,7 +183,13 @@ public class ApiProviderListActivity extends Activity {
                     GlobalDataHolder.setGptApiKey(provider.getKey());
                     GlobalDataHolder.setGptModel(provider.getModel());
                 }
+                String copy = provider.getHost() + ";" + provider.getKey() + ";" + provider.getModel();
                 adapter.notifyDataSetChanged();
+                ClipboardManager clipboard = (ClipboardManager)
+                        getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("simple text", copy);
+                clipboard.setPrimaryClip(clip);
+                GlobalUtils.showToast(ApiProviderListActivity.this, "已复制到粘贴板", false);
             }
         });
 
