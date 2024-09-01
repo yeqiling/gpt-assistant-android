@@ -233,7 +233,7 @@
     <string name="text_visiting_web_prefix">"正在访问: "</string>
     <string name="text_cancel_web">已取消访问网页。</string>
     <string name="text_asr_error_prefix">"语音识别出错: "</string>
-    <string name="text_input_hint">长按清除文本</string>
+    <string name="text_input_hint">请输入你的问题</string>
     <string name="text_listening_hint">正在聆听...</string>
     <string name="text_access_notice">请前往开启无障碍服务</string>
     <string name="toast_access_error">无障碍服务未开启，无法使用音量键控制</string>
@@ -286,4 +286,7 @@
     <string name="now_select_api_desc">已选中:\n%s\n%s</string>
     <string name="model_list_title">模型列表</string>
     <string name="model_params_empty">模型参数为空</string>
+    <string name="no_gpt_host">暂无渠道</string>
+    <string name="clear_input">长按清除</string>
+    <string name="copy_input">复制</string>
 </resources>

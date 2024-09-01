@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.main.MainActivity">
 
     <LinearLayout
         android:id="@+id/ll_main_base"
@@ -255,6 +255,31 @@
                     android:background="#00FFFFFF"
                     android:scaleType="centerInside"
                     android:src="@drawable/send_btn" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/clear_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/clear_input"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/copy_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:padding="8dp"
+                    android:text="@string/copy_input"
+                    android:textColor="@color/black" />
+
+
             </LinearLayout>
 
         </LinearLayout>

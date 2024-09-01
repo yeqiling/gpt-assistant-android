@@ -1,4 +1,4 @@
-package com.skythinker.gptassistant;
+package com.skythinker.gptassistant.ui.apiprovider;
 
 import java.io.Serializable;
 

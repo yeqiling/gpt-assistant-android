@@ -1,4 +1,4 @@
-package com.skythinker.gptassistant;
+package com.skythinker.gptassistant.ui.apiprovider;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -20,6 +20,9 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.skythinker.gptassistant.utils.GlobalDataHolder;
+import com.skythinker.gptassistant.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

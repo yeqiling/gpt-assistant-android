@@ -1,9 +1,13 @@
-package com.skythinker.gptassistant;
+package com.skythinker.gptassistant.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
 import android.util.Log;
+
+import com.skythinker.gptassistant.ui.main.PromptTabData;
+import com.skythinker.gptassistant.R;
+import com.skythinker.gptassistant.ui.apiprovider.ApiProvider;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -80,6 +84,7 @@ public class GlobalDataHolder {
             tabDataList = (List<PromptTabData>) (new ObjectInputStream(bais).readObject());
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
+            tabDataList = new ArrayList<>();
         }
     }
 

@@ -1,7 +1,5 @@
-package com.skythinker.gptassistant;
+package com.skythinker.gptassistant.ui.settings;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,37 +10,26 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.skythinker.gptassistant.utils.GlobalDataHolder;
+import com.skythinker.gptassistant.ui.main.PromptTabData;
+import com.skythinker.gptassistant.R;
+import com.skythinker.gptassistant.ui.apiprovider.ApiProviderListActivity;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class TabConfActivity extends Activity {
 
@@ -180,7 +167,8 @@ public class TabConfActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        String apiProvider = String.format(getString(R.string.now_select_api_desc), GlobalDataHolder.getGptApiHost(), GlobalDataHolder.getGptModel());
+        String selectHost = TextUtils.isEmpty(GlobalDataHolder.getGptApiHost()) ? getString(R.string.no_gpt_host) : GlobalDataHolder.getGptApiHost();
+        String apiProvider = String.format(getString(R.string.now_select_api_desc), selectHost, GlobalDataHolder.getGptModel());
         ((TextView) findViewById(R.id.select_api)).setText(apiProvider);
     }
 

@@ -1,13 +1,16 @@
-package com.skythinker.gptassistant;
+package com.skythinker.gptassistant.ui.settings;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+
+import com.skythinker.gptassistant.ui.templates.OnlineTemplatesActivity;
+import com.skythinker.gptassistant.R;
+import com.skythinker.gptassistant.utils.GlobalUtils;
 
 public class TabDetailConfActivity extends Activity {
 

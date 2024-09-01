@@ -41,19 +41,19 @@
         </service>
 
         <activity
-            android:name=".TabDetailConfActivity"
+            android:name=".ui.settings.TabDetailConfActivity"
             android:exported="false" />
         <activity
-            android:name=".TabConfActivity"
+            android:name=".ui.settings.TabConfActivity"
             android:exported="true" />
         <activity
-            android:name=".HistoryActivity"
+            android:name=".ui.history.HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".OnlineTemplatesActivity"
+            android:name=".ui.templates.OnlineTemplatesActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateVisible|adjustResize">
@@ -86,7 +86,7 @@
         </activity>
 
         <activity
-            android:name=".ApiProviderListActivity"
+            android:name=".ui.apiprovider.ApiProviderListActivity"
             android:exported="false" />
 
         <provider

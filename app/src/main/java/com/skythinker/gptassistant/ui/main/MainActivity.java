@@ -1,15 +1,13 @@
-package com.skythinker.gptassistant;
+package com.skythinker.gptassistant.ui.main;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,9 +18,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.provider.Settings;
-import android.speech.tts.TextToSpeech;
-import android.speech.tts.UtteranceProgressListener;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
@@ -57,10 +52,21 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.skythinker.gptassistant.ChatManager.ChatMessage;
-import com.skythinker.gptassistant.ChatManager.ChatMessage.ChatRole;
-import com.skythinker.gptassistant.ChatManager.Conversation;
-import com.skythinker.gptassistant.ChatManager.MessageList;
+import com.skythinker.gptassistant.BuildConfig;
+import com.skythinker.gptassistant.R;
+import com.skythinker.gptassistant.chat.ChatApiClient;
+import com.skythinker.gptassistant.chat.ChatManager;
+import com.skythinker.gptassistant.chat.ChatManager.ChatMessage;
+import com.skythinker.gptassistant.chat.ChatManager.ChatMessage.ChatRole;
+import com.skythinker.gptassistant.chat.ChatManager.Conversation;
+import com.skythinker.gptassistant.chat.ChatManager.MessageList;
+import com.skythinker.gptassistant.ui.apiprovider.ApiProvider;
+import com.skythinker.gptassistant.ui.history.HistoryActivity;
+import com.skythinker.gptassistant.ui.settings.TabConfActivity;
+import com.skythinker.gptassistant.utils.GlobalDataHolder;
+import com.skythinker.gptassistant.utils.GlobalUtils;
+import com.skythinker.gptassistant.utils.WebScraper;
+import com.skythinker.gptassistant.view.MarkdownRenderer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -69,9 +75,7 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
-import java.util.UUID;
 
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONException;
@@ -83,7 +87,7 @@ import io.noties.prism4j.annotations.PrismBundle;
 public class MainActivity extends Activity {
 
     private int selectedTab = 0;
-    private TextView tvGptReply;
+    private TextView tvGptReply, clear_input, copy_input;
     private EditText etUserInput;
     private ImageButton btSend, btImage;
     private ScrollView svChatArea;
@@ -137,6 +141,8 @@ public class MainActivity extends Activity {
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 
         tvGptReply = findViewById(R.id.tv_chat_notice);
+        clear_input = findViewById(R.id.clear_input);
+        copy_input = findViewById(R.id.copy_input);
         tvGptReply.setTextIsSelectable(true);
         tvGptReply.setMovementMethod(LinkMovementMethod.getInstance());
         etUserInput = findViewById(R.id.et_user_input);
@@ -372,27 +378,18 @@ public class MainActivity extends Activity {
         });
 
         // 长按输入框开始录音或清空内容
-        etUserInput.setOnLongClickListener(view -> {
-            if (etUserInput.getText().toString().equals("")) {
-                Intent broadcastIntent = new Intent("com.skythinker.gptassistant.KEY_SPEECH_START");
-                LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
-                view.setTag("recording");
-            } else {
-                etUserInput.setText("");
-            }
+        clear_input.setOnLongClickListener(view -> {
+            etUserInput.setText("");
             return true;
         });
 
-        etUserInput.setOnTouchListener((view, motionEvent) -> {
-            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                if ("recording".equals(view.getTag())) {
-                    Intent broadcastIntent = new Intent("com.skythinker.gptassistant.KEY_SPEECH_STOP");
-                    LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
-                    view.setTag(null);
-                }
-            }
-            return false;
+        copy_input.setOnClickListener(view -> {
+            ClipboardManager clipboard = (ClipboardManager)
+                    getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("simple text", etUserInput.getText().toString());
+            clipboard.setPrimaryClip(clip);
         });
+
 
         // 连续对话按钮点击事件（切换连续对话开关状态）
         (findViewById(R.id.cv_multi_chat)).setOnClickListener(view -> {
